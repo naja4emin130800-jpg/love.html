@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Love You More J 💗</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =========================
+                START SCREEN
+        ========================= */
+
+        .start-screen {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 999;
+
+            background: #000;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+        }
+
+
+        .start-content {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .start-heart {
+            font-size: 70px;
+
+            animation: heartbeat 1.3s infinite;
+
+            filter:
+                drop-shadow(0 0 10px #ff1493)
+                drop-shadow(0 0 25px #ff1493);
+        }
+
+
+        .start-content h1 {
+            color: #ff69b4;
+
+            font-size: 42px;
+
+            letter-spacing: 4px;
+
+            text-shadow:
+                0 0 8px #ff1493,
+                0 0 20px #ff1493;
+        }
+
+
+        .start-content p {
+            color: #aaa;
+
+            font-size: 17px;
+
+            letter-spacing: 2px;
+        }
+
+
+        #startButton {
+            margin-top: 15px;
+
+            padding: 14px 40px;
+
+            border: 2px solid #ff69b4;
+
+            border-radius: 30px;
+
+            background: transparent;
+
+            color: #ff69b4;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 0 10px #ff1493,
+                inset 0 0 10px #ff1493;
+
+            transition: 0.3s;
+        }
+
+
+        #startButton:hover {
+            background: #ff1493;
+
+            color: white;
+
+            box-shadow:
+                0 0 20px #ff1493,
+                0 0 40px #ff1493;
+
+            transform: scale(1.08);
+        }
+
+
+        /* ANIMASI LOVE */
+
+        @keyframes heartbeat {
+
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.18);
+            }
+
+        }
+
+
+        /* HILANG SETELAH START */
+
+        .start-screen.hide {
+            animation: fadeOut 1s forwards;
+        }
+
+
+        @keyframes fadeOut {
+
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+        }
+
+
+        /* =========================
+              LAYAR DESKTOP
+        ========================= */
+
+        .screen {
+            position: relative;
+
+            width: 100vw;
+            height: 100vh;
+
+            overflow: hidden;
+
+            perspective: 900px;
+        }
+
+
+        /* =========================
+                DUNIA 3D
+        ========================= */
+
+        .world {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+
+            transform-style: preserve-3d;
+        }
+
+
+        /* =========================
+             OBJEK DUNIA
+        ========================= */
+
+        .object {
+            position: absolute;
+
+            transform-style: preserve-3d;
+
+            white-space: nowrap;
+
+            /*
+              SEMUA OBJEK MULAI DEKAT
+              LALU MENJAUH KE TITIK TENGAH
+            */
+
+            animation-name: recede;
+
+            animation-timing-function: linear;
+
+            animation-iteration-count: infinite;
+
+            /* DIAM SEBELUM START */
+
+            animation-play-state: paused;
+        }
+
+
+        /* =========================
+             GERAK KE BELAKANG
+        ========================= */
+
+        @keyframes recede {
+
+            0% {
+                transform:
+                    translate3d(
+                        0,
+                        0,
+                        700px
+                    )
+                    scale(1.15);
+
+                opacity: 1;
+            }
+
+            55% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform:
+                    translate3d(
+                        0,
+                        0,
+                        -2600px
+                    )
+                    scale(0.05);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================
+                TULISAN
+        ========================= */
+
+        .text {
+            font-size: 17px;
+
+            font-weight: bold;
+
+            letter-spacing: 1.5px;
+
+            text-shadow:
+                0 0 5px currentColor,
+                0 0 12px currentColor;
+        }
+
+
+        /* WARNA */
+
+        .green {
+            color: #7CFF00;
+        }
+
+        .blue {
+            color: #38BFFF;
+        }
+
+        .brown {
+            color: #C58B62;
+        }
+
+        .pink {
+            color: #FF69B4;
+        }
+
+
+        /* =========================
+                  FOTO
+        ========================= */
+
+        .photo img {
+            width: 105px;
+            height: auto;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(0 0 7px #ff1493)
+                drop-shadow(0 0 15px #ff1493);
+        }
+
+
+        /* =========================
+                  LOVE
+        ========================= */
+
+        .heart {
+            font-size: 35px;
+
+            filter:
+                drop-shadow(0 0 8px #ff1493)
+                drop-shadow(0 0 15px #ff69b4);
+        }
+
+
+        /* =========================
+              VIGNETTE
+        ========================= */
+
+        .vignette {
+            position: absolute;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    transparent 35%,
+                    rgba(0,0,0,0.35) 75%,
+                    rgba(0,0,0,0.85)
+                );
+
+            z-index: 100;
+        }
+
+
+        /* =========================
+               TULISAN UTAMA
+        ========================= */
+
+        .main-title {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            z-index: 90;
+
+            color: #ffffff;
+
+            font-size: 30px;
+
+            letter-spacing: 4px;
+
+            opacity: 0.85;
+
+            text-shadow:
+                0 0 10px #ff69b4;
+
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+        START SCREEN
+========================= -->
+
+<div class="start-screen" id="startScreen">
+
+    <div class="start-content">
+
+        <div class="start-heart">💗</div>
+
+        <h1>LOVE YOU MORE J</h1>
+
+        <p>Are you ready? ✨</p>
+
+        <button id="startButton">
+            START 💕
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+          MAIN SCREEN
+========================= -->
+
+<div class="screen">
+
+    <div class="world" id="world"></div>
+
+    <div class="main-title">
+        LOVE YOU MORE J 💗
+    </div>
+
+    <div class="vignette"></div>
+
+</div>
+
+
+
+<script>
+
+const world =
+    document.getElementById("world");
+
+
+/*
+====================================================
+                KATA-KATA CINTA
+====================================================
+*/
+
+const loveWords = [
+
+    "LOVE YOU MORE J",
+
+    "I LOVE YOU SO MUCH 💗",
+
+    "YOU ARE MY FAVORITE PERSON",
+
+    "YOU MAKE MY WORLD BEAUTIFUL",
+
+    "I'M ALWAYS THINKING ABOUT YOU",
+
+    "YOU MAKE ME SMILE EVERY DAY",
+
+    "YOU ARE SO SPECIAL TO ME",
+
+    "I'M HAPPY WHEN YOU ARE HAPPY",
+
+    "YOU ARE MY LITTLE HAPPINESS",
+
+    "YOU MAKE EVERYTHING BETTER",
+
+    "I WILL ALWAYS CARE ABOUT YOU",
+
+    "YOU ARE MY FAVORITE THOUGHT",
+
+    "I LOVE SEEING YOU SMILE",
+
+    "YOU MEAN SO MUCH TO ME",
+
+    "YOU ARE WORTH ALL THE LOVE",
+
+    "YOU MAKE MY HEART HAPPY",
+
+    "I'M SO GLAD I KNOW YOU",
+
+    "YOU ARE ONE OF A KIND",
+
+    "I'M LUCKY TO HAVE YOU",
+
+    "YOU MAKE MY DAYS BRIGHTER",
+
+    "I LOVE EVERY LITTLE THING ABOUT YOU",
+
+    "YOU ARE MY HAPPY PLACE",
+
+    "I JUST WANT YOU TO BE HAPPY",
+
+    "YOU DESERVE THE WHOLE WORLD",
+
+    "YOU ARE ALWAYS SPECIAL TO ME",
+
+    "I WILL ALWAYS BE HERE FOR YOU",
+
+    "YOU MAKE MY HEART FEEL WARM",
+
+    "YOU ARE THE BEST PART OF MY DAY",
+
+    "I LOVE SPENDING TIME WITH YOU",
+
+    "YOU MAKE LIFE FEEL MORE BEAUTIFUL",
+
+    "MY HEART ALWAYS FINDS YOU",
+
+    "YOU ARE MY FAVORITE HELLO",
+
+    "AND MY HARDEST GOODBYE",
+
+    "YOU MAKE MY WORLD A LITTLE BRIGHTER",
+
+    "I HOPE YOU ALWAYS KEEP SMILING",
+
+    "YOU ARE MORE PRECIOUS THAN YOU KNOW",
+
+    "I LOVE YOU MORE AND MORE",
+
+    "YOU ARE MY LITTLE SUNSHINE ☀️",
+
+    "YOU ARE THE REASON I SMILE",
+
+    "MY HEART IS HAPPY BECAUSE OF YOU",
+
+    "YOU ARE SOMEONE I WILL ALWAYS CHERISH",
+
+    "I'M GLAD YOU'RE IN MY LIFE",
+
+    "YOU MAKE ORDINARY DAYS FEEL SPECIAL",
+
+    "NO MATTER WHAT, YOU ARE SPECIAL",
+
+    "I JUST WANT TO SEE YOU HAPPY",
+
+    "LOVE YOU TO THE MOON AND BACK 🌙",
+
+    "YOU WILL ALWAYS HAVE A SPECIAL PLACE IN MY HEART",
+
+    "THANK YOU FOR BEING YOU",
+
+    "LOVE YOU MORE, J 💗"
+
+];
+
+
+/*
+====================================================
+                   WARNA
+====================================================
+*/
+
+const colors = [
+    "green",
+    "blue",
+    "brown",
+    "pink"
+];
+
+
+/*
+====================================================
+             MEMBUAT TULISAN
+====================================================
+*/
+
+loveWords.forEach((word, i) => {
+
+    const element =
+        document.createElement("div");
+
+    element.classList.add(
+        "object",
+        "text",
+        colors[i % colors.length]
+    );
+
+    element.innerText = word;
+
+
+    /*
+      POSISI KIRI / KANAN
+    */
+
+    const x =
+        5 + ((i * 37) % 90);
+
+
+    /*
+      POSISI ATAS / BAWAH
+    */
+
+    const y =
+        8 + ((i * 23) % 82);
+
+
+    element.style.left =
+        x + "%";
+
+    element.style.top =
+        y + "%";
+
+
+    /*
+      JEDA BERBEDA
+
+      Supaya tidak semuanya lewat
+      bersamaan.
+    */
+
+    element.style.animationDuration =
+        (48 + (i % 5) * 3) + "s";
+
+    element.style.animationDelay =
+        -(i * 1.2) + "s";
+
+
+    world.appendChild(element);
+
+});
+
+
+
+/*
+====================================================
+                SPIDER-MAN
+====================================================
+*/
+
+for (let i = 0; i < 20; i++) {
+
+    const element =
+        document.createElement("div");
+
+    element.classList.add(
+        "object",
+        "photo"
+    );
+
+
+    const img =
+        document.createElement("img");
+
+    img.src = "spiderman.png";
+
+
+    element.appendChild(img);
+
+
+    element.style.left =
+        (3 + ((i * 41) % 92)) + "%";
+
+    element.style.top =
+        (5 + ((i * 31) % 88)) + "%";
+
+
+    element.style.animationDuration =
+        (52 + (i % 4) * 3) + "s";
+
+    element.style.animationDelay =
+        -(i * 2.3) + "s";
+
+
+    world.appendChild(element);
+
+}
+
+
+
+/*
+====================================================
+              SPIDER-WOMAN
+====================================================
+*/
+
+for (let i = 0; i < 20; i++) {
+
+    const element =
+        document.createElement("div");
+
+    element.classList.add(
+        "object",
+        "photo"
+    );
+
+
+    const img =
+        document.createElement("img");
+
+    img.src = "spiderman.png";
+
+
+    element.appendChild(img);
+
+
+    element.style.left =
+        (3 + ((i * 53) % 92)) + "%";
+
+    element.style.top =
+        (7 + ((i * 27) % 86)) + "%";
+
+
+    element.style.animationDuration =
+        (55 + (i % 5) * 2) + "s";
+
+    element.style.animationDelay =
+        -(i * 2.8) + "s";
+
+
+    world.appendChild(element);
+
+}
+
+
+
+/*
+====================================================
+                     LOVE
+====================================================
+*/
+
+const hearts = [
+    "💗",
+    "💕",
+    "💖",
+    "💓",
+    "💞",
+    "❤️",
+    "💘"
+];
+
+
+for (let i = 0; i < 45; i++) {
+
+    const element =
+        document.createElement("div");
+
+    element.classList.add(
+        "object",
+        "heart"
+    );
+
+
+    element.innerText =
+        hearts[i % hearts.length];
+
+
+    element.style.left =
+        (2 + ((i * 29) % 95)) + "%";
+
+    element.style.top =
+        (3 + ((i * 43) % 92)) + "%";
+
+
+    element.style.animationDuration =
+        (45 + (i % 6) * 3) + "s";
+
+    element.style.animationDelay =
+        -(i * 1.7) + "s";
+
+
+    world.appendChild(element);
+
+}
+
+
+/* =========================
+          START BUTTON
+========================= */
+
+const startScreen =
+    document.getElementById("startScreen");
+
+const startButton =
+    document.getElementById("startButton");
+
+
+/*
+    KETIKA START DITEKAN
+*/
+
+startButton.addEventListener("click", () => {
+
+    startScreen.classList.add("hide");
+
+
+    /*
+        Mulai semua tulisan,
+        foto, dan love
+    */
+
+    const objects =
+        document.querySelectorAll(".object");
+
+
+    objects.forEach(object => {
+
+        object.style.animationPlayState =
+            "running";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
